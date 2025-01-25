@@ -10,28 +10,44 @@ Code was tested using Python 3.8 with PyTorch 2.0.1 on Ubuntu 18.04 with CUDA 11
 * linear_attention_transformer 0.19.1
 * sklearn 
 
-### Before training:
+### Dataset
+This article uses four datasets:
 
-# Generate training tuples for Dataset:
-    python generating_queries/generate_training_tuple_new_negitives.py --data_path --data_name
+1. [In-house data (Snail radar)](https://github.com/snail-radar/snail-radar.github.io): Long range radar
 
-# Generate evaluation tuples:
-    python generating_queries/generate_test_sets_radar_new.py --data_path --data_name
+2. [Tsinghua data](https://github.com/thucyw/mmWave-Radar-Relocalization/tree/main/dataset): Short range radar
 
-### Training:
-    eg. Default training parameters on in-house:
+3. [MSC data](https://mscrad4r.github.io): Long range radar
 
-	python train_radar.py \
-	    -- dataset_folder \
-	    -- TRAIN_FILE
+4. [Colorado data](https://arpg.github.io/coloradar/): Short range radar
 
-    See config.py for all other training parameters.
+### Before Training
 
-### evaluation
+#### Generate training tuples for Dataset:
+```bash
+python generating_queries/generate_training_tuple_new_negitives.py --data_path --data_name
+```
 
-    python evaluate_radar.py \
-	--  dataset_folder \
-	--  EVAL_QUERY_FILE \
-	--  EVAL_DATABASE_FILE
+#### Generate evaluation tuples:
+```bash
+python generating_queries/generate_test_sets_radar_new.py --data_path --data_name
+```
+
+### Training
+
+#### Example: Default training parameters on in-house:
+```bash
+python train_radar.py \
+    -- dataset_folder \
+    -- TRAIN_FILE
+```
+See `config.py` for all other training parameters.
+
+### Evaluation
+```bash
+python evaluate_radar.py \
+    -- dataset_folder \
+    -- EVAL_QUERY_FILE \
+    -- EVAL_DATABASE_FILE
 
 
